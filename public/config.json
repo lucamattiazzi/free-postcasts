@@ -1,0 +1,669 @@
+{
+  "config": {
+    "APIKey": "#LTQeAdM4g/7huTcM64kP0g==",
+    "APIMap": {
+      "autologin": {
+        "method": "GET",
+        "url": "https://api-prod.ilpost.it/user/v1/auth/me"
+      },
+      "bff-episode": {
+        "method": "GET",
+        "url": "https://api-prod.ilpost.it/podcast/v1/bff/podcast/{podcastId}/{episodeId}"
+      },
+      "bff-homepage": {
+        "method": "GET",
+        "url": "https://api-prod.ilpost.it/podcast/v1/bff/hp"
+      },
+      "bff-podcast": {
+        "method": "GET",
+        "url": "https://api-prod.ilpost.it/podcast/v1/bff/podcast/{podcastId}"
+      },
+      "bookmark": {
+        "method": "POST",
+        "url": "https://api-prod.ilpost.it/user/v1/saved/{postId}"
+      },
+      "change-subscribable-item-list": {
+        "method": "POST",
+        "url": "https://api-prod.ilpost.it/user/v1/auth/me"
+      },
+      "exists": {
+        "method": "POST",
+        "url": "https://api-prod.ilpost.it/user/v1/auth/check"
+      },
+      "get-all-bookmarks": {
+        "method": "GET",
+        "url": "https://api-prod.ilpost.it/user/v1/saved"
+      },
+      "get-bookmark-ids": {
+        "method": "POST",
+        "url": "https://api-prod.ilpost.it/user/v1/saved/list/all"
+      },
+      "gift": {
+        "method": "POST",
+        "url": "https://api-prod.ilpost.it/user/v1/gift/{postId}"
+      },
+      "login": {
+        "method": "POST",
+        "url": "https://api-prod.ilpost.it/user/v1/auth/login"
+      },
+      "podcast-episode": {
+        "method": "GET",
+        "url": "https://api-prod.ilpost.it/podcast/v1/podcast/{podcastId}/{episodeId}"
+      },
+      "podcast-episode-list": {
+        "method": "GET",
+        "url": "https://api-prod.ilpost.it/podcast/v1/podcast/{podcastId}"
+      },
+      "podcast-list": {
+        "method": "GET",
+        "url": "https://api-prod.ilpost.it/podcast/v1/podcast"
+      },
+      "register-new-user": {
+        "method": "POST",
+        "url": "https://api-prod.ilpost.it/user/v1/auth/register"
+      },
+      "request-account-deletion": {
+        "method": "POST",
+        "url": "https://api-prod.ilpost.it/user/v1/auth/delete"
+      },
+      "request-password-reset": {
+        "method": "POST",
+        "url": "https://api-prod.ilpost.it/user/v1/auth/reset"
+      },
+      "resolve-episode-slug": {
+        "method": "GET",
+        "url": "https://api-prod.ilpost.it/podcast/v1/podcast/check"
+      },
+      "set-fcm-token": {
+        "method": "POST",
+        "url": "https://api-prod.ilpost.it/user/v1/app/token"
+      },
+      "subscribable-item-list": {
+        "method": "GET",
+        "url": "https://api-prod.ilpost.it/config/v1/push"
+      },
+      "synchronize-episode-user-states": {
+        "method": "POST",
+        "url": "https://api-prod.ilpost.it/user/v1/state/sync/episode"
+      },
+      "unbookmark": {
+        "method": "DELETE",
+        "url": "https://api-prod.ilpost.it/user/v1/saved/{postId}"
+      }
+    },
+    "AppStoreID": 1561220696,
+    "Cookies": [
+      {
+        "domain": ".ilpost.it",
+        "max-age": 31536000000,
+        "name": "appweb",
+        "path": "/",
+        "secure": true,
+        "value": "app"
+      },
+      {
+        "domain": ".ilpost.it",
+        "max-age": 31536000000,
+        "name": "ilpost-token",
+        "path": "/",
+        "secure": true,
+        "value": "${userToken}"
+      },
+      {
+        "domain": ".ilpost.it",
+        "max-age": 31536000000,
+        "name": "wp-consent",
+        "path": "/",
+        "secure": true,
+        "value": "${trackingAuthorizationStatus}"
+      }
+    ],
+    "CustomHTTPHeaders": {
+      "appilpost": "1",
+      "appios": "1"
+    },
+    "DateFormat": "d MMM yyyy; locale=it; tz=Europe/Rome; text-transform=none",
+    "DefaultTimeZone": "Europe/Rome",
+    "EpisodeContextualMenu": [
+      "gift",
+      "download",
+      "share",
+      "bookmark",
+      "viewAll"
+    ],
+    "EpisodeDescriptionCSS": "body { font-family: \"Georgia\"; font-size: 16px; font-weight: 400; }\na { color: #12b6d1; text-decoration: none; }",
+    "EpisodeSlugPattern": "^https://[a-z0-9-]+\\.ilpost\\.it/episodes/(?<slug>[a-z0-9-]+)/",
+    "MailReportConfiguration": {
+      "attachmentName": "ilpost-diagnostic-log.txt",
+      "compressionThreshold": 1000,
+      "includeLogs": false,
+      "preamble": "\n\n##################################\nINFORMAZIONI DISPOSITIVO\n##################################\nSe segnali problemi o anomalie con l’uso dell’app queste informazioni ci aiutano a trovare una soluzione.\nSe preferisci non condividerle, puoi cancellare queste righe dal messaggio.\n\n",
+      "recipients": [
+        "abbonati@ilpost.it"
+      ],
+      "subject": "Contatta la redazione"
+    },
+    "MappIntelligenceConfiguration": {
+      "batchSupport": false,
+      "batchSupportSize": 5000,
+      "logLevel": "none",
+      "requestInterval": 900,
+      "requestPerQueue": 100,
+      "shouldMigrate": false,
+      "trackDomain": "https://web.x.ilpost.it",
+      "trackIds": [
+        641523609775483,
+        261133737461298
+      ],
+      "versionInEachRequest": false
+    },
+    "MinimumAutorefreshInterval": 300,
+    "PasswordValidation": {
+      "failColor": "named('PasswordRuleFail')",
+      "passColor": "named('PasswordRulePass')",
+      "prompt": "La password deve essere <span class='length'>lunga almeno 8 caratteri</span>, deve contenere <span class='uppercase'>almeno una lettera maiuscola</span>, <span class='lowercase'>almeno una lettera minuscola</span> e <span class='digits'>almeno un numero</span>.",
+      "rules": {
+        "digits": {
+          "regexPattern": "[0-9]"
+        },
+        "length": {
+          "regexPattern": ".{8,}"
+        },
+        "lowercase": {
+          "regexPattern": "[a-z]"
+        },
+        "uppercase": {
+          "regexPattern": "[A-Z]"
+        }
+      }
+    },
+    "PlaybackRates": [
+      0.75,
+      1,
+      1.25,
+      1.5,
+      1.75,
+      2
+    ],
+    "PlayerDateFormat": "d MMMM yyyy; locale=it; tz=Europe/Rome; text-transform=none",
+    "PodcastParameters": {
+      "227193": {
+        "header_color": "#E56C6B",
+        "title": "Tienimi Bordone"
+      },
+      "227194": {
+        "header_color": "white",
+        "title": "Joypad"
+      },
+      "227195": {
+        "header_color": "#3F40AC",
+        "title": "Konrad"
+      },
+      "227196": {
+        "header_color": "white",
+        "title": "Un podcast su Sanremo"
+      },
+      "227197": {
+        "header_color": "white",
+        "title": "Storie dalla libreria"
+      },
+      "227198": {
+        "header_color": "white",
+        "title": "Weekly Post"
+      },
+      "227244": {
+        "header_color": "white",
+        "title": "La guerra dei gelati"
+      },
+      "227246": {
+        "header_color": "white",
+        "title": "Immaginare l'apocalisse"
+      },
+      "227259": {
+        "header_color": "white",
+        "title": "L'anno del jazz"
+      },
+      "227322": {
+        "header_color": "white",
+        "title": "Mai più"
+      },
+      "227412": {
+        "header_color": "#0DC8E6",
+        "title": "Audiopost"
+      },
+      "227474": {
+        "header_color": "#3A9CC1",
+        "title": "Morning"
+      },
+      "227496": {
+        "header_color": "white",
+        "title": "Un podcast sull'Eurovision"
+      },
+      "227736": {
+        "header_color": "white",
+        "title": "Wembley"
+      },
+      "227768": {
+        "header_color": "white",
+        "title": "Da Vermicino in poi"
+      },
+      "228236": {
+        "header_color": "white",
+        "title": "M49 - Una storia di orsi e persone"
+      },
+      "228710": {
+        "header_color": "white",
+        "title": "La fine del mondo"
+      },
+      "228752": {
+        "header_color": "white",
+        "title": "Strade blu"
+      },
+      "229228": {
+        "header_color": "white",
+        "title": "Cose spiegate bene"
+      },
+      "229701": {
+        "header_color": "white",
+        "title": "Politics"
+      },
+      "230293": {
+        "header_color": "#109AAB",
+        "title": "Indagini"
+      },
+      "230388": {
+        "header_color": "#FE682C",
+        "title": "Ci vuole una scienza"
+      },
+      "230476": {
+        "header_color": "white",
+        "title": "Certe cose"
+      },
+      "230754": {
+        "header_color": "white",
+        "title": "La fabbrica dei soldi"
+      },
+      "231013": {
+        "header_color": "white",
+        "title": "Un furto di quart'ordine"
+      },
+      "231088": {
+        "header_color": "white",
+        "title": "La bomba"
+      },
+      "231622": {
+        "header_color": "white",
+        "title": "Le basi"
+      },
+      "231758": {
+        "header_color": "#BE4B4B",
+        "title": "Tienimi Morning"
+      },
+      "232180": {
+        "header_color": "#91E4CE",
+        "title": "Globo"
+      },
+      "233120": {
+        "header_color": "#FFD525",
+        "title": "Comodino"
+      },
+      "233226": {
+        "header_color": "#FF301D",
+        "title": "Amare parole"
+      },
+      "233318": {
+        "header_color": "#707A8A",
+        "title": "Le onorate"
+      },
+      "233679": {
+        "header_color": "#AA7C5D",
+        "title": "Timbuctu"
+      },
+      "234296": {
+        "header_color": "#08030A",
+        "title": "Tredici"
+      },
+      "236670": {
+        "header_color": "#FB015F",
+        "title": "Altre Indagini"
+      },
+      "237308": {
+        "header_color": "#DCDCDC",
+        "title": "Ascolta"
+      },
+      "237658": {
+        "header_color": "#480FDA",
+        "title": "Sonar"
+      },
+      "238325": {
+        "header_color": "#190066",
+        "title": "Geniale"
+      }
+    },
+    "PodcastURLPattern": "^https://[a-z0-9-]+\\.ilpost\\.it/podcasts/(?<podcastId>[a-z0-9-]+)/(?<episodeId>[a-z0-9-]+)",
+    "PositionSynchronizationInterval": 10,
+    "RewriteRules": {
+      "Accessibility": [
+        {
+          "Replacement": "Episodio $1",
+          "SearchPattern": "Ep\\. ([1-9][0-9]*)"
+        }
+      ],
+      "UniversalLinks": [
+        {
+          "Replacement": "$1",
+          "SearchPattern": "^(https.*)/amp$",
+          "StopFlag": true
+        },
+        {
+          "Replacement": "$1",
+          "SearchPattern": "^(https.*)\\?amp=1$",
+          "StopFlag": true
+        }
+      ]
+    },
+    "WebCredentials": [
+      {
+        "method": "HTTPBasic",
+        "password": "#skKEh7SrOJqNk1W2vrqFoA==",
+        "url": "https://www-stage.ilpost.it",
+        "user": "testilpost"
+      }
+    ],
+    "WebViewsAreInspectable": true
+  },
+  "services": [
+    {
+      "subservices": [
+        200,
+        210,
+        700,
+        300,
+        301
+      ],
+      "tag": 100,
+      "type": "root"
+    },
+    {
+      "icon": "Home",
+      "params": {
+        "isHomePage": true
+      },
+      "rightBarButton": 250,
+      "tag": 200,
+      "title": "Il Post",
+      "type": "webPage",
+      "url": "https://www.ilpost.it"
+    },
+    {
+      "icon": "Home",
+      "params": {
+        "font-weight": 600
+      },
+      "tag": 201,
+      "title": "Home",
+      "type": "webPage",
+      "url": "https://www.ilpost.it"
+    },
+    {
+      "icon": "Podcast",
+      "tag": 210,
+      "title": "Podcast",
+      "type": "podcast"
+    },
+    {
+      "condition": "isLoggedIn == true",
+      "icon": "AccountLoggedIn",
+      "tag": 300,
+      "title": "Tu",
+      "type": "account"
+    },
+    {
+      "condition": "isLoggedIn == false",
+      "icon": "Account",
+      "params": {
+        "consentText1": "Dichiaro di aver preso visione dell’[informativa riguardante il trattamento dei dati](https://app.ilpost.it/privacy.html) ed acconsento al trattamento degli stessi per la gestione della registrazione e dei servizi collegati.",
+        "consentText2": "Dichiaro di aver preso visione e di accettare le [condizioni di registrazione](https://app.ilpost.it/tos.html).",
+        "shouldHideNavigationBar": true
+      },
+      "tag": 301,
+      "title": "Tu",
+      "type": "login"
+    },
+    {
+      "icon": "Hamburger2",
+      "subservices": [
+        570,
+        201,
+        444,
+        610,
+        630,
+        640,
+        650,
+        620,
+        660
+      ],
+      "tag": 250,
+      "title": "Hamburger",
+      "type": "group"
+    },
+    {
+      "params": {
+        "separator": true
+      },
+      "subservices": [
+        410,
+        520,
+        420,
+        530,
+        430,
+        540,
+        440,
+        550,
+        450,
+        555,
+        460,
+        560,
+        470,
+        510,
+        480,
+        490,
+        500,
+        580
+      ],
+      "tag": 444,
+      "type": "grid"
+    },
+    {
+      "icon": "FavoritesOutline",
+      "tag": 260,
+      "title": "Bookmark",
+      "type": "group"
+    },
+    {
+      "tag": 410,
+      "title": "Italia",
+      "type": "webPage",
+      "url": "https://www.ilpost.it/italia"
+    },
+    {
+      "tag": 420,
+      "title": "Mondo",
+      "type": "webPage",
+      "url": "https://www.ilpost.it/mondo"
+    },
+    {
+      "tag": 430,
+      "title": "Politica",
+      "type": "webPage",
+      "url": "https://www.ilpost.it/politica"
+    },
+    {
+      "tag": 440,
+      "title": "Tecnologia",
+      "type": "webPage",
+      "url": "https://www.ilpost.it/tecnologia"
+    },
+    {
+      "tag": 450,
+      "title": "Internet",
+      "type": "webPage",
+      "url": "https://www.ilpost.it/internet"
+    },
+    {
+      "tag": 460,
+      "title": "Scienza",
+      "type": "webPage",
+      "url": "https://www.ilpost.it/scienza"
+    },
+    {
+      "tag": 470,
+      "title": "Cultura",
+      "type": "webPage",
+      "url": "https://www.ilpost.it/cultura"
+    },
+    {
+      "tag": 480,
+      "title": "Economia",
+      "type": "webPage",
+      "url": "https://www.ilpost.it/economia"
+    },
+    {
+      "tag": 490,
+      "title": "Europa",
+      "type": "webPage",
+      "url": "https://www.ilpost.it/europa"
+    },
+    {
+      "tag": 500,
+      "title": "Sport",
+      "type": "webPage",
+      "url": "https://www.ilpost.it/sport"
+    },
+    {
+      "tag": 510,
+      "title": "Media",
+      "type": "webPage",
+      "url": "https://www.ilpost.it/media"
+    },
+    {
+      "tag": 520,
+      "title": "Moda",
+      "type": "webPage",
+      "url": "https://www.ilpost.it/moda"
+    },
+    {
+      "tag": 530,
+      "title": "Libri",
+      "type": "webPage",
+      "url": "https://www.ilpost.it/libri"
+    },
+    {
+      "tag": 540,
+      "title": "Consumismi",
+      "type": "webPage",
+      "url": "https://www.ilpost.it/consumismi"
+    },
+    {
+      "tag": 550,
+      "title": "Storie/Idee",
+      "type": "webPage",
+      "url": "https://www.ilpost.it/storie-idee"
+    },
+    {
+      "tag": 555,
+      "title": "Da Costa a Costa",
+      "type": "webPage",
+      "url": "https://www.ilpost.it/da-costa-a-costa/"
+    },
+    {
+      "tag": 560,
+      "title": "Ok Boomer!",
+      "type": "webPage",
+      "url": "https://www.ilpost.it/ok-boomer"
+    },
+    {
+      "icon": "Search",
+      "params": {
+        "font-weight": 600,
+        "separator": true
+      },
+      "tag": 570,
+      "title": "Cerca",
+      "type": "webPage",
+      "url": "https://www.ilpost.it/cerca"
+    },
+    {
+      "tag": 580,
+      "title": "Newsletter",
+      "type": "webPage",
+      "url": "https://www.ilpost.it/newsletter/"
+    },
+    {
+      "icon": "Account",
+      "tag": 600,
+      "title": "Area Personale",
+      "type": "account"
+    },
+    {
+      "icon": "Letter",
+      "params": {
+        "font-weight": 600
+      },
+      "tag": 610,
+      "title": "Contattaci",
+      "type": "mail"
+    },
+    {
+      "params": {
+        "title": "App Ufficiale Il Post",
+        "url": "https://app.ilpost.it"
+      },
+      "tag": 620,
+      "title": "Condividi l’app",
+      "type": "share"
+    },
+    {
+      "params": {
+        "shouldPresentModally": false
+      },
+      "tag": 630,
+      "title": "Chi Siamo",
+      "type": "webPage",
+      "url": "https://www.ilpost.it/webview-chisiamo/"
+    },
+    {
+      "params": {
+        "shouldPresentModally": false
+      },
+      "tag": 640,
+      "title": "Privacy",
+      "type": "webPage",
+      "url": "https://app.ilpost.it/privacy.html"
+    },
+    {
+      "params": {
+        "shouldPresentModally": false
+      },
+      "tag": 650,
+      "title": "Condizioni d’uso",
+      "type": "webPage",
+      "url": "https://app.ilpost.it/tos.html"
+    },
+    {
+      "tag": 660,
+      "title": "Versione App",
+      "type": "about"
+    },
+    {
+      "icon": "FavoritesOutline",
+      "params": {
+        "needDownloadedEpisodes": true
+      },
+      "tag": 700,
+      "title": "Preferiti",
+      "type": "webPage",
+      "url": "https://www.ilpost.it/preferiti/"
+    }
+  ]
+}
