@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Modal } from './Modal'
 import { Podcast } from './Podcast'
 import { PodcastButton } from './PodcastButton'
-import { getConfig } from './utils'
+import { getAllPodcasts } from './utils'
 
 export const App = () => {
   const [selectedPodcast, setSelectedPodcast] = useState(null)
@@ -60,15 +60,9 @@ export const App = () => {
 
 
   useEffect(() => {
-    getConfig().then(config => {
-      const rawPodcasts = config.config.PodcastParameters
-      const podcastList = Object.entries(rawPodcasts).map(([id, podcast]) => {
-        return {
-          id,
-          title: podcast.title,
-        }
-      })
-      setPodcasts(podcastList)
+    getAllPodcasts().then(response => {
+      response.data.sort((a, b) => a.title > b.title ? 1 : -1)
+      setPodcasts(response.data)
     })
   }, [setPodcasts])
 

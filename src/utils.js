@@ -1,5 +1,5 @@
 function ignoreCorsFetch(url) {
-  return fetch(`https://api.cors.lol/?url=${url}`)
+  return fetch(`https://api.cors.lol/?url=${encodeURIComponent(url)}`)
 }
 
 export async function getPodcast(id) {
@@ -7,9 +7,9 @@ export async function getPodcast(id) {
   return await resp.json()
 }
 
-export async function getConfig() {
+export async function getAllPodcasts() {
   try {
-    const resp = await ignoreCorsFetch("https://ws.ovolab.com/ilpost/ios/config-40.json")
+    const resp = await ignoreCorsFetch("https://api-prod.ilpost.it/podcast/v1/podcast/?pg=1&hits=100")
     return await resp.json()
   } catch (err) {
     console.log('err', err)

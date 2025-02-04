@@ -1,669 +1,1547 @@
 {
-  "config": {
-    "APIKey": "#LTQeAdM4g/7huTcM64kP0g==",
-    "APIMap": {
-      "autologin": {
-        "method": "GET",
-        "url": "https://api-prod.ilpost.it/user/v1/auth/me"
-      },
-      "bff-episode": {
-        "method": "GET",
-        "url": "https://api-prod.ilpost.it/podcast/v1/bff/podcast/{podcastId}/{episodeId}"
-      },
-      "bff-homepage": {
-        "method": "GET",
-        "url": "https://api-prod.ilpost.it/podcast/v1/bff/hp"
-      },
-      "bff-podcast": {
-        "method": "GET",
-        "url": "https://api-prod.ilpost.it/podcast/v1/bff/podcast/{podcastId}"
-      },
-      "bookmark": {
-        "method": "POST",
-        "url": "https://api-prod.ilpost.it/user/v1/saved/{postId}"
-      },
-      "change-subscribable-item-list": {
-        "method": "POST",
-        "url": "https://api-prod.ilpost.it/user/v1/auth/me"
-      },
-      "exists": {
-        "method": "POST",
-        "url": "https://api-prod.ilpost.it/user/v1/auth/check"
-      },
-      "get-all-bookmarks": {
-        "method": "GET",
-        "url": "https://api-prod.ilpost.it/user/v1/saved"
-      },
-      "get-bookmark-ids": {
-        "method": "POST",
-        "url": "https://api-prod.ilpost.it/user/v1/saved/list/all"
-      },
-      "gift": {
-        "method": "POST",
-        "url": "https://api-prod.ilpost.it/user/v1/gift/{postId}"
-      },
-      "login": {
-        "method": "POST",
-        "url": "https://api-prod.ilpost.it/user/v1/auth/login"
-      },
-      "podcast-episode": {
-        "method": "GET",
-        "url": "https://api-prod.ilpost.it/podcast/v1/podcast/{podcastId}/{episodeId}"
-      },
-      "podcast-episode-list": {
-        "method": "GET",
-        "url": "https://api-prod.ilpost.it/podcast/v1/podcast/{podcastId}"
-      },
-      "podcast-list": {
-        "method": "GET",
-        "url": "https://api-prod.ilpost.it/podcast/v1/podcast"
-      },
-      "register-new-user": {
-        "method": "POST",
-        "url": "https://api-prod.ilpost.it/user/v1/auth/register"
-      },
-      "request-account-deletion": {
-        "method": "POST",
-        "url": "https://api-prod.ilpost.it/user/v1/auth/delete"
-      },
-      "request-password-reset": {
-        "method": "POST",
-        "url": "https://api-prod.ilpost.it/user/v1/auth/reset"
-      },
-      "resolve-episode-slug": {
-        "method": "GET",
-        "url": "https://api-prod.ilpost.it/podcast/v1/podcast/check"
-      },
-      "set-fcm-token": {
-        "method": "POST",
-        "url": "https://api-prod.ilpost.it/user/v1/app/token"
-      },
-      "subscribable-item-list": {
-        "method": "GET",
-        "url": "https://api-prod.ilpost.it/config/v1/push"
-      },
-      "synchronize-episode-user-states": {
-        "method": "POST",
-        "url": "https://api-prod.ilpost.it/user/v1/state/sync/episode"
-      },
-      "unbookmark": {
-        "method": "DELETE",
-        "url": "https://api-prod.ilpost.it/user/v1/saved/{postId}"
-      }
-    },
-    "AppStoreID": 1561220696,
-    "Cookies": [
-      {
-        "domain": ".ilpost.it",
-        "max-age": 31536000000,
-        "name": "appweb",
-        "path": "/",
-        "secure": true,
-        "value": "app"
-      },
-      {
-        "domain": ".ilpost.it",
-        "max-age": 31536000000,
-        "name": "ilpost-token",
-        "path": "/",
-        "secure": true,
-        "value": "${userToken}"
-      },
-      {
-        "domain": ".ilpost.it",
-        "max-age": 31536000000,
-        "name": "wp-consent",
-        "path": "/",
-        "secure": true,
-        "value": "${trackingAuthorizationStatus}"
-      }
-    ],
-    "CustomHTTPHeaders": {
-      "appilpost": "1",
-      "appios": "1"
-    },
-    "DateFormat": "d MMM yyyy; locale=it; tz=Europe/Rome; text-transform=none",
-    "DefaultTimeZone": "Europe/Rome",
-    "EpisodeContextualMenu": [
-      "gift",
-      "download",
-      "share",
-      "bookmark",
-      "viewAll"
-    ],
-    "EpisodeDescriptionCSS": "body { font-family: \"Georgia\"; font-size: 16px; font-weight: 400; }\na { color: #12b6d1; text-decoration: none; }",
-    "EpisodeSlugPattern": "^https://[a-z0-9-]+\\.ilpost\\.it/episodes/(?<slug>[a-z0-9-]+)/",
-    "MailReportConfiguration": {
-      "attachmentName": "ilpost-diagnostic-log.txt",
-      "compressionThreshold": 1000,
-      "includeLogs": false,
-      "preamble": "\n\n##################################\nINFORMAZIONI DISPOSITIVO\n##################################\nSe segnali problemi o anomalie con l’uso dell’app queste informazioni ci aiutano a trovare una soluzione.\nSe preferisci non condividerle, puoi cancellare queste righe dal messaggio.\n\n",
-      "recipients": [
-        "abbonati@ilpost.it"
-      ],
-      "subject": "Contatta la redazione"
-    },
-    "MappIntelligenceConfiguration": {
-      "batchSupport": false,
-      "batchSupportSize": 5000,
-      "logLevel": "none",
-      "requestInterval": 900,
-      "requestPerQueue": 100,
-      "shouldMigrate": false,
-      "trackDomain": "https://web.x.ilpost.it",
-      "trackIds": [
-        641523609775483,
-        261133737461298
-      ],
-      "versionInEachRequest": false
-    },
-    "MinimumAutorefreshInterval": 300,
-    "PasswordValidation": {
-      "failColor": "named('PasswordRuleFail')",
-      "passColor": "named('PasswordRulePass')",
-      "prompt": "La password deve essere <span class='length'>lunga almeno 8 caratteri</span>, deve contenere <span class='uppercase'>almeno una lettera maiuscola</span>, <span class='lowercase'>almeno una lettera minuscola</span> e <span class='digits'>almeno un numero</span>.",
-      "rules": {
-        "digits": {
-          "regexPattern": "[0-9]"
-        },
-        "length": {
-          "regexPattern": ".{8,}"
-        },
-        "lowercase": {
-          "regexPattern": "[a-z]"
-        },
-        "uppercase": {
-          "regexPattern": "[A-Z]"
-        }
-      }
-    },
-    "PlaybackRates": [
-      0.75,
-      1,
-      1.25,
-      1.5,
-      1.75,
-      2
-    ],
-    "PlayerDateFormat": "d MMMM yyyy; locale=it; tz=Europe/Rome; text-transform=none",
-    "PodcastParameters": {
-      "227193": {
-        "header_color": "#E56C6B",
-        "title": "Tienimi Bordone"
-      },
-      "227194": {
-        "header_color": "white",
-        "title": "Joypad"
-      },
-      "227195": {
-        "header_color": "#3F40AC",
-        "title": "Konrad"
-      },
-      "227196": {
-        "header_color": "white",
-        "title": "Un podcast su Sanremo"
-      },
-      "227197": {
-        "header_color": "white",
-        "title": "Storie dalla libreria"
-      },
-      "227198": {
-        "header_color": "white",
-        "title": "Weekly Post"
-      },
-      "227244": {
-        "header_color": "white",
-        "title": "La guerra dei gelati"
-      },
-      "227246": {
-        "header_color": "white",
-        "title": "Immaginare l'apocalisse"
-      },
-      "227259": {
-        "header_color": "white",
-        "title": "L'anno del jazz"
-      },
-      "227322": {
-        "header_color": "white",
-        "title": "Mai più"
-      },
-      "227412": {
-        "header_color": "#0DC8E6",
-        "title": "Audiopost"
-      },
-      "227474": {
-        "header_color": "#3A9CC1",
-        "title": "Morning"
-      },
-      "227496": {
-        "header_color": "white",
-        "title": "Un podcast sull'Eurovision"
-      },
-      "227736": {
-        "header_color": "white",
-        "title": "Wembley"
-      },
-      "227768": {
-        "header_color": "white",
-        "title": "Da Vermicino in poi"
-      },
-      "228236": {
-        "header_color": "white",
-        "title": "M49 - Una storia di orsi e persone"
-      },
-      "228710": {
-        "header_color": "white",
-        "title": "La fine del mondo"
-      },
-      "228752": {
-        "header_color": "white",
-        "title": "Strade blu"
-      },
-      "229228": {
-        "header_color": "white",
-        "title": "Cose spiegate bene"
-      },
-      "229701": {
-        "header_color": "white",
-        "title": "Politics"
-      },
-      "230293": {
-        "header_color": "#109AAB",
-        "title": "Indagini"
-      },
-      "230388": {
-        "header_color": "#FE682C",
-        "title": "Ci vuole una scienza"
-      },
-      "230476": {
-        "header_color": "white",
-        "title": "Certe cose"
-      },
-      "230754": {
-        "header_color": "white",
-        "title": "La fabbrica dei soldi"
-      },
-      "231013": {
-        "header_color": "white",
-        "title": "Un furto di quart'ordine"
-      },
-      "231088": {
-        "header_color": "white",
-        "title": "La bomba"
-      },
-      "231622": {
-        "header_color": "white",
-        "title": "Le basi"
-      },
-      "231758": {
-        "header_color": "#BE4B4B",
-        "title": "Tienimi Morning"
-      },
-      "232180": {
-        "header_color": "#91E4CE",
-        "title": "Globo"
-      },
-      "233120": {
-        "header_color": "#FFD525",
-        "title": "Comodino"
-      },
-      "233226": {
-        "header_color": "#FF301D",
-        "title": "Amare parole"
-      },
-      "233318": {
-        "header_color": "#707A8A",
-        "title": "Le onorate"
-      },
-      "233679": {
-        "header_color": "#AA7C5D",
-        "title": "Timbuctu"
-      },
-      "234296": {
-        "header_color": "#08030A",
-        "title": "Tredici"
-      },
-      "236670": {
-        "header_color": "#FB015F",
-        "title": "Altre Indagini"
-      },
-      "237308": {
-        "header_color": "#DCDCDC",
-        "title": "Ascolta"
-      },
-      "237658": {
-        "header_color": "#480FDA",
-        "title": "Sonar"
-      },
-      "238325": {
-        "header_color": "#190066",
-        "title": "Geniale"
-      }
-    },
-    "PodcastURLPattern": "^https://[a-z0-9-]+\\.ilpost\\.it/podcasts/(?<podcastId>[a-z0-9-]+)/(?<episodeId>[a-z0-9-]+)",
-    "PositionSynchronizationInterval": 10,
-    "RewriteRules": {
-      "Accessibility": [
-        {
-          "Replacement": "Episodio $1",
-          "SearchPattern": "Ep\\. ([1-9][0-9]*)"
-        }
-      ],
-      "UniversalLinks": [
-        {
-          "Replacement": "$1",
-          "SearchPattern": "^(https.*)/amp$",
-          "StopFlag": true
-        },
-        {
-          "Replacement": "$1",
-          "SearchPattern": "^(https.*)\\?amp=1$",
-          "StopFlag": true
-        }
-      ]
-    },
-    "WebCredentials": [
-      {
-        "method": "HTTPBasic",
-        "password": "#skKEh7SrOJqNk1W2vrqFoA==",
-        "url": "https://www-stage.ilpost.it",
-        "user": "testilpost"
-      }
-    ],
-    "WebViewsAreInspectable": true
+  "head": {
+    "exec_time": 0.047,
+    "status": 200,
+    "data": {
+      "total": 59,
+      "pg": 1,
+      "hits": 100
+    }
   },
-  "services": [
+  "data": [
     {
-      "subservices": [
-        200,
-        210,
-        700,
-        300,
-        301
-      ],
-      "tag": 100,
-      "type": "root"
-    },
-    {
-      "icon": "Home",
-      "params": {
-        "isHomePage": true
+      "id": 239123,
+      "author": "Alessandro Baricco",
+      "description": "Un podcast-concerto per ascoltare Alessandro Baricco che legge sette capitoli del suo ultimo romanzo, Abel, accompagnato da tre musicisti: Cesare Picco, Roberto Tarasco, Nicola Tescari",
+      "title": "Live Baricco",
+      "image": "https://www.ilpost.it/wp-content/uploads/2024/12/10/1733842065-LiveBaricco_copertina_500x500.jpg",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2024/12/10/1733842079-LiveBaricco_copertina_676x355.jpg",
+      "object": "podcast",
+      "count": 2,
+      "slug": "live-baricco",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 0,
+        "pushnotification": 1,
+        "chronological": 1,
+        "order": 0,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "podcast-monografici",
+        "evidenza": "",
+        "cyclicalitytype": "monografico",
+        "background_color": "#ddc5c5"
       },
-      "rightBarButton": 250,
-      "tag": 200,
-      "title": "Il Post",
-      "type": "webPage",
-      "url": "https://www.ilpost.it"
+      "access_level": "all"
     },
     {
-      "icon": "Home",
-      "params": {
-        "font-weight": 600
+      "id": 238878,
+      "author": "Francesco Perlini e Nicola Vasini",
+      "description": "Cosa succede quando una cosa nuova come l'era digitale incontra una cosa di sempre come la morte?",
+      "title": "Digital Requiem",
+      "image": "https://www.ilpost.it/wp-content/uploads/2024/11/15/1731683479-Digital_Requiem-copertina-500x500-1.jpg",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2024/11/15/1731683676-Digital_Requiem-copertina-autori-676x355-1.jpg",
+      "object": "podcast",
+      "count": 5,
+      "slug": "digital-requiem",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 0,
+        "pushnotification": 1,
+        "chronological": 1,
+        "order": 0,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "podcast-monografici",
+        "evidenza": "monografico",
+        "cyclicalitytype": "monografico",
+        "background_color": "#FFFFFF"
       },
-      "tag": 201,
-      "title": "Home",
-      "type": "webPage",
-      "url": "https://www.ilpost.it"
+      "access_level": "all"
     },
     {
-      "icon": "Podcast",
-      "tag": 210,
-      "title": "Podcast",
-      "type": "podcast"
-    },
-    {
-      "condition": "isLoggedIn == true",
-      "icon": "AccountLoggedIn",
-      "tag": 300,
-      "title": "Tu",
-      "type": "account"
-    },
-    {
-      "condition": "isLoggedIn == false",
-      "icon": "Account",
-      "params": {
-        "consentText1": "Dichiaro di aver preso visione dell’[informativa riguardante il trattamento dei dati](https://app.ilpost.it/privacy.html) ed acconsento al trattamento degli stessi per la gestione della registrazione e dei servizi collegati.",
-        "consentText2": "Dichiaro di aver preso visione e di accettare le [condizioni di registrazione](https://app.ilpost.it/tos.html).",
-        "shouldHideNavigationBar": true
+      "id": 238325,
+      "author": "Matteo Bordone",
+      "description": "Come l'intelligenza artificiale sta cambiando le nostre vite, in collaborazione con FAIR",
+      "title": "Geniale",
+      "image": "https://www.ilpost.it/wp-content/uploads/2024/09/19/1726731661-Geniale_Tavola-disegno-1-copia-10-100.jpg",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2024/09/19/1726732412-Geniale_Tavola-disegno-1-copia-2-100.jpg",
+      "object": "podcast",
+      "count": 8,
+      "slug": "geniale",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 0,
+        "pushnotification": 1,
+        "chronological": 1,
+        "order": 0,
+        "robot": "off",
+        "sponsored": 1,
+        "cyclicality": "sponsorizzato",
+        "evidenza": "sponsorizzato",
+        "cyclicalitytype": "monografico",
+        "background_color": "#FFFFFF"
       },
-      "tag": 301,
-      "title": "Tu",
-      "type": "login"
+      "access_level": "all"
     },
     {
-      "icon": "Hamburger2",
-      "subservices": [
-        570,
-        201,
-        444,
-        610,
-        630,
-        640,
-        650,
-        620,
-        660
-      ],
-      "tag": 250,
-      "title": "Hamburger",
-      "type": "group"
-    },
-    {
-      "params": {
-        "separator": true
+      "id": 238792,
+      "author": "Stefano Nazzi e Antonia Sorge",
+      "description": "Met\u00e0 dei delitti, in Italia, avviene in casa. Un podcast di Stefano Nazzi e Antonia Sorge",
+      "title": "In famiglia",
+      "image": "https://www.ilpost.it/wp-content/uploads/2024/11/07/1730976658-InFamiglia_500x500.jpg",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2024/11/07/1730976810-InFamiglia_676x355.jpg",
+      "object": "podcast",
+      "count": 2,
+      "slug": "in-famiglia",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 0,
+        "pushnotification": 0,
+        "chronological": 1,
+        "order": 0,
+        "robot": "off",
+        "sponsored": 1,
+        "cyclicality": "sponsorizzato",
+        "evidenza": "sponsorizzato",
+        "cyclicalitytype": "monografico",
+        "background_color": "#FFFFFF"
       },
-      "subservices": [
-        410,
-        520,
-        420,
-        530,
-        430,
-        540,
-        440,
-        550,
-        450,
-        555,
-        460,
-        560,
-        470,
-        510,
-        480,
-        490,
-        500,
-        580
-      ],
-      "tag": 444,
-      "type": "grid"
+      "access_level": "all"
     },
     {
-      "icon": "FavoritesOutline",
-      "tag": 260,
-      "title": "Bookmark",
-      "type": "group"
-    },
-    {
-      "tag": 410,
-      "title": "Italia",
-      "type": "webPage",
-      "url": "https://www.ilpost.it/italia"
-    },
-    {
-      "tag": 420,
-      "title": "Mondo",
-      "type": "webPage",
-      "url": "https://www.ilpost.it/mondo"
-    },
-    {
-      "tag": 430,
-      "title": "Politica",
-      "type": "webPage",
-      "url": "https://www.ilpost.it/politica"
-    },
-    {
-      "tag": 440,
-      "title": "Tecnologia",
-      "type": "webPage",
-      "url": "https://www.ilpost.it/tecnologia"
-    },
-    {
-      "tag": 450,
-      "title": "Internet",
-      "type": "webPage",
-      "url": "https://www.ilpost.it/internet"
-    },
-    {
-      "tag": 460,
-      "title": "Scienza",
-      "type": "webPage",
-      "url": "https://www.ilpost.it/scienza"
-    },
-    {
-      "tag": 470,
-      "title": "Cultura",
-      "type": "webPage",
-      "url": "https://www.ilpost.it/cultura"
-    },
-    {
-      "tag": 480,
-      "title": "Economia",
-      "type": "webPage",
-      "url": "https://www.ilpost.it/economia"
-    },
-    {
-      "tag": 490,
-      "title": "Europa",
-      "type": "webPage",
-      "url": "https://www.ilpost.it/europa"
-    },
-    {
-      "tag": 500,
-      "title": "Sport",
-      "type": "webPage",
-      "url": "https://www.ilpost.it/sport"
-    },
-    {
-      "tag": 510,
-      "title": "Media",
-      "type": "webPage",
-      "url": "https://www.ilpost.it/media"
-    },
-    {
-      "tag": 520,
-      "title": "Moda",
-      "type": "webPage",
-      "url": "https://www.ilpost.it/moda"
-    },
-    {
-      "tag": 530,
-      "title": "Libri",
-      "type": "webPage",
-      "url": "https://www.ilpost.it/libri"
-    },
-    {
-      "tag": 540,
-      "title": "Consumismi",
-      "type": "webPage",
-      "url": "https://www.ilpost.it/consumismi"
-    },
-    {
-      "tag": 550,
-      "title": "Storie/Idee",
-      "type": "webPage",
-      "url": "https://www.ilpost.it/storie-idee"
-    },
-    {
-      "tag": 555,
-      "title": "Da Costa a Costa",
-      "type": "webPage",
-      "url": "https://www.ilpost.it/da-costa-a-costa/"
-    },
-    {
-      "tag": 560,
-      "title": "Ok Boomer!",
-      "type": "webPage",
-      "url": "https://www.ilpost.it/ok-boomer"
-    },
-    {
-      "icon": "Search",
-      "params": {
-        "font-weight": 600,
-        "separator": true
+      "id": 239295,
+      "author": "Massimo Cirri e Matteo Caccia",
+      "description": "Un racconto sentimentale sulla fabbrica del cambiamento della psichiatria italiana",
+      "title": "Basaglia e i suoi",
+      "image": "https://www.ilpost.it/wp-content/uploads/2024/12/24/1735040623-Basaglia-500x500-1.jpg",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2024/12/24/1735040537-Basaglia_copertina_nomi_676x355.jpg",
+      "object": "podcast",
+      "count": 5,
+      "slug": "basaglia-e-i-suoi",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 0,
+        "pushnotification": 1,
+        "chronological": 1,
+        "order": 0,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "podcast-monografici",
+        "evidenza": "",
+        "cyclicalitytype": "monografico",
+        "background_color": "#FFFFFF"
       },
-      "tag": 570,
-      "title": "Cerca",
-      "type": "webPage",
-      "url": "https://www.ilpost.it/cerca"
+      "access_level": "all"
     },
     {
-      "tag": 580,
-      "title": "Newsletter",
-      "type": "webPage",
-      "url": "https://www.ilpost.it/newsletter/"
-    },
-    {
-      "icon": "Account",
-      "tag": 600,
-      "title": "Area Personale",
-      "type": "account"
-    },
-    {
-      "icon": "Letter",
-      "params": {
-        "font-weight": 600
+      "id": 239176,
+      "author": "Matteo Caccia",
+      "description": "Una notizia al giorno e le storie che le stanno attorno, ogni pomeriggio per tutto l\u2019inverno. Di Matteo Caccia",
+      "title": "Orazio",
+      "image": "https://www.ilpost.it/wp-content/uploads/2024/12/13/1734104728-Orazio_copertina_500x500.jpg",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2024/12/13/1734104666-Orazio_copertina_nomi_676x355.jpg.jpg",
+      "object": "podcast",
+      "count": 38,
+      "slug": "orazio",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 0,
+        "pushnotification": 1,
+        "chronological": 1,
+        "order": 0,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "da-lunedi-a-venerdi",
+        "evidenza": "",
+        "cyclicalitytype": "periodico",
+        "background_color": "#FFFFFF"
       },
-      "tag": 610,
-      "title": "Contattaci",
-      "type": "mail"
+      "access_level": "all"
     },
     {
-      "params": {
-        "title": "App Ufficiale Il Post",
-        "url": "https://app.ilpost.it"
+      "id": 239539,
+      "author": "Matteo Bordone e Flavio Parisi",
+      "description": "Il Giappone, visto e raccontato da Matteo Bordone e Flavio Parisi",
+      "title": "Viaggio a Tokyo",
+      "image": "https://static-prod.cdnilpost.com/wp-content/uploads/2025/01/24/1737721118-VAT_copertina_500x500.jpg",
+      "image_web": "https://static-prod.cdnilpost.com/wp-content/uploads/2025/01/24/1737721072-VAT_copertina_nomi_676x355.jpg",
+      "object": "podcast",
+      "count": 3,
+      "slug": "viaggio-a-tokyo",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 0,
+        "pushnotification": 1,
+        "chronological": 1,
+        "order": 0,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "podcast-monografici",
+        "evidenza": "",
+        "cyclicalitytype": "periodico",
+        "background_color": "#FFFFFF"
       },
-      "tag": 620,
-      "title": "Condividi l’app",
-      "type": "share"
+      "access_level": "all"
     },
     {
-      "params": {
-        "shouldPresentModally": false
+      "id": 230293,
+      "author": "Stefano Nazzi",
+      "description": "Cosa \u00e8 successo dopo alcuni dei pi\u00f9 noti casi di cronaca nera italiana. Una storia ogni mese, il primo del mese. Di Stefano Nazzi.",
+      "title": "Indagini",
+      "image": "https://www.ilpost.it/wp-content/uploads/2022/03/Image-from-iOS-1.jpg.webp",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2023/05/19/1684474530-indagini-wide.jpg-copia.jpg",
+      "object": "podcast",
+      "count": 71,
+      "slug": "indagini",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 0,
+        "pushnotification": 1,
+        "chronological": 1,
+        "order": 1,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "mensili",
+        "evidenza": "periodico",
+        "cyclicalitytype": "periodico",
+        "background_color": "#FFFFFF"
       },
-      "tag": 630,
-      "title": "Chi Siamo",
-      "type": "webPage",
-      "url": "https://www.ilpost.it/webview-chisiamo/"
+      "access_level": "all"
     },
     {
-      "params": {
-        "shouldPresentModally": false
+      "id": 237733,
+      "author": "Matteo Bordone",
+      "description": "Il podcast di Matteo Bordone sulle Olimpiadi di Parigi: tutti i giorni, dal 26 luglio al 12 agosto 2024",
+      "title": "Tienimi Parigi",
+      "image": "https://www.ilpost.it/wp-content/uploads/2024/07/17/1721194784-Tienimi_parigi.jpg",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2024/07/16/1721164092-Articolo1200x600-3.jpg",
+      "object": "podcast",
+      "count": 19,
+      "slug": "tienimi-parigi",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 1,
+        "pushnotification": 1,
+        "chronological": 1,
+        "order": 2,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "ogni-quattro-anni",
+        "evidenza": "",
+        "cyclicalitytype": "periodico",
+        "background_color": "#FFFFFF"
       },
-      "tag": 640,
-      "title": "Privacy",
-      "type": "webPage",
-      "url": "https://app.ilpost.it/privacy.html"
+      "access_level": "all"
     },
     {
-      "params": {
-        "shouldPresentModally": false
+      "id": 227474,
+      "author": "Francesco Costa",
+      "description": "Comincia la giornata con la rassegna stampa di Francesco Costa.",
+      "title": "Morning",
+      "image": "https://www.ilpost.it/wp-content/uploads/2021/05/evening-1.png",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2021/09/morning-copertina.png",
+      "object": "podcast",
+      "count": 981,
+      "slug": "morning",
+      "url": null,
+      "meta": {
+        "gift": 1,
+        "gift_all": 0,
+        "pushnotification": 1,
+        "chronological": 1,
+        "order": 3,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "da-lunedi-a-venerdi",
+        "evidenza": "periodico",
+        "cyclicalitytype": "periodico",
+        "background_color": "#FFFFFF"
       },
-      "tag": 650,
-      "title": "Condizioni d’uso",
-      "type": "webPage",
-      "url": "https://app.ilpost.it/tos.html"
+      "access_level": "subscriber"
     },
     {
-      "tag": 660,
-      "title": "Versione App",
-      "type": "about"
-    },
-    {
-      "icon": "FavoritesOutline",
-      "params": {
-        "needDownloadedEpisodes": true
+      "id": 233679,
+      "author": "Marino Sinibaldi",
+      "description": "Un posto dove parlare del mondo, con i libri. Timbuctu \u00e8 un podcast di Marino Sinibaldi.",
+      "title": "Timbuctu",
+      "image": "https://www.ilpost.it/wp-content/uploads/2023/05/19/1684536738-copertina500x500.jpg",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2023/05/19/1684536759-copertina676x355-autori.jpg",
+      "object": "podcast",
+      "count": 294,
+      "slug": "timbuctu",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 1,
+        "pushnotification": 1,
+        "chronological": 1,
+        "order": 4,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "3-a-settimana",
+        "evidenza": "",
+        "cyclicalitytype": "periodico",
+        "background_color": "#FFFFFF"
       },
-      "tag": 700,
-      "title": "Preferiti",
-      "type": "webPage",
-      "url": "https://www.ilpost.it/preferiti/"
+      "access_level": "all"
+    },
+    {
+      "id": 233226,
+      "author": "Vera Gheno",
+      "description": "Un podcast sul linguaggio e i suoi cambiamenti, con Vera Gheno, ogni domenica.",
+      "title": "Amare parole",
+      "image": "https://www.ilpost.it/wp-content/uploads/2023/03/24/1679665127-copertina500x500.jpg",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2023/03/24/1679665167-copertina676x355-autori.jpg",
+      "object": "podcast",
+      "count": 94,
+      "slug": "amare-parole",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 1,
+        "pushnotification": 1,
+        "chronological": 1,
+        "order": 5,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "ogni-domenica",
+        "evidenza": "periodico",
+        "cyclicalitytype": "periodico",
+        "background_color": "#FFFFFF"
+      },
+      "access_level": "all"
+    },
+    {
+      "id": 237308,
+      "author": "Il Post",
+      "description": "Gli articoli del Post, letti e spiegati da chi li ha scritti",
+      "title": "Ascolta",
+      "image": "https://www.ilpost.it/wp-content/uploads/2024/05/31/1717170231-copertina500x500.jpg",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2024/05/31/1717170298-copertina676x355-autori.jpg",
+      "object": "podcast",
+      "count": 185,
+      "slug": "ascolta",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 0,
+        "pushnotification": 1,
+        "chronological": 1,
+        "order": 6,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "ogni-domenica",
+        "evidenza": "periodico",
+        "cyclicalitytype": "periodico",
+        "background_color": "#FFFFFF"
+      },
+      "access_level": "registered"
+    },
+    {
+      "id": 230388,
+      "author": "Emanuele Menietti, Beatrice Mautino",
+      "description": "E quindi proviamo a capire come funziona. Ogni venerd\u00ec, con Emanuele Menietti e Beatrice Mautino.",
+      "title": "Ci vuole una scienza",
+      "image": "https://www.ilpost.it/wp-content/uploads/2022/04/CVUS-logo.png",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2023/05/17/1684302441-CVUS-1-copia.jpg",
+      "object": "podcast",
+      "count": 149,
+      "slug": "ci-vuole-una-scienza",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 1,
+        "pushnotification": 1,
+        "chronological": 1,
+        "order": 7,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "ogni-venerdi",
+        "evidenza": "periodico",
+        "cyclicalitytype": "periodico",
+        "background_color": "#FFFFFF"
+      },
+      "access_level": "all"
+    },
+    {
+      "id": 232180,
+      "author": "Eugenio Cau",
+      "description": "Un podcast del Post con un\u2019intervista a settimana sulle cose del mondo. Tutti i mercoled\u00ec con Eugenio Cau.",
+      "title": "Globo",
+      "image": "https://www.ilpost.it/wp-content/uploads/2025/01/08/1736326190-globo-500x500-1.jpg",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2025/01/08/1736326210-globo-676x355-autori.jpg",
+      "object": "podcast",
+      "count": 120,
+      "slug": "globo",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 1,
+        "pushnotification": 1,
+        "chronological": 1,
+        "order": 8,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "ogni-mercoledi",
+        "evidenza": "periodico",
+        "cyclicalitytype": "periodico",
+        "background_color": "#1e73be"
+      },
+      "access_level": "all"
+    },
+    {
+      "id": 233120,
+      "author": "Ludovica Lugli, Giulia Pilotti",
+      "description": "Un podcast sui libri e su tutte le cose che ci stanno intorno, il 15 di ogni mese.",
+      "title": "Comodino",
+      "image": "https://www.ilpost.it/wp-content/uploads/2023/03/13/1678692858-copertina500x500.jpg",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2023/03/15/1678874757-copertina1000x525-autori.jpg",
+      "object": "podcast",
+      "count": 30,
+      "slug": "comodino",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 1,
+        "pushnotification": 1,
+        "chronological": 1,
+        "order": 9,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "mensili",
+        "evidenza": "periodico",
+        "cyclicalitytype": "periodico",
+        "background_color": "#FFFFFF"
+      },
+      "access_level": "all"
+    },
+    {
+      "id": 237658,
+      "author": "Nicol\u00f2 Porcelluzzi",
+      "description": "Come il linguaggio costruisce la realt\u00e0, anche sott&#8217;acqua\n",
+      "title": "Sonar",
+      "image": "https://www.ilpost.it/wp-content/uploads/2024/07/09/1720506116-copertina500x500.jpg",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2024/07/09/1720506245-copertina676x355-autori.jpg",
+      "object": "podcast",
+      "count": 6,
+      "slug": "sonar",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 0,
+        "pushnotification": 0,
+        "chronological": 1,
+        "order": 10,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "podcast-monografici",
+        "evidenza": "monografico",
+        "cyclicalitytype": "monografico",
+        "background_color": "#dddddd"
+      },
+      "access_level": "all"
+    },
+    {
+      "id": 227193,
+      "author": "Matteo Bordone",
+      "description": "Il podcast quotidiano di Matteo Bordone. Tutto quello che non sapevi di voler sapere.",
+      "title": "Tienimi Bordone",
+      "image": "https://www.ilpost.it/wp-content/uploads/2021/04/app-tb.jpg",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2023/05/17/1684302197-tienimi_bordone-1-copia.jpg",
+      "object": "podcast",
+      "count": 1259,
+      "slug": "tienimi-bordone",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 1,
+        "pushnotification": 1,
+        "chronological": 1,
+        "order": 11,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "da-lunedi-a-venerdi",
+        "evidenza": "periodico",
+        "cyclicalitytype": "periodico",
+        "background_color": "#FFFFFF"
+      },
+      "access_level": "subscriber"
+    },
+    {
+      "id": 236670,
+      "author": "Stefano Nazzi",
+      "description": "Le puntate speciali di Indagini che raccontano le grandi vicende della storia italiana, di Stefano Nazzi.",
+      "title": "Altre Indagini",
+      "image": "https://www.ilpost.it/wp-content/uploads/2024/04/09/1712669037-altre-Indagini-logo-1.png",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2024/04/09/1712670309-Altre_Indagini_676x355.jpg",
+      "object": "podcast",
+      "count": 18,
+      "slug": "altre-indagini",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 0,
+        "pushnotification": 1,
+        "chronological": 1,
+        "order": 12,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "ogni-due-mesi",
+        "evidenza": "periodico",
+        "cyclicalitytype": "periodico",
+        "background_color": "#0a0000"
+      },
+      "access_level": "subscriber"
+    },
+    {
+      "id": 237357,
+      "author": "Luca Sofri e Zerocalcare",
+      "description": "Per parlare di lavoro e diritti, relazioni familiari e disegnetti, copripiumini e cose che non si pu\u00f2 fare a meno di fare.",
+      "title": "Zerocalcare, tra virgolette",
+      "image": "https://www.ilpost.it/wp-content/uploads/2024/06/06/1717654872-copertina500x500.jpg",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2024/06/06/1717655044-copertina676x355.jpg",
+      "object": "podcast",
+      "count": 2,
+      "slug": "zerocalcare-tra-virgolette",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 0,
+        "pushnotification": 0,
+        "chronological": 1,
+        "order": 13,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "podcast-monografici",
+        "evidenza": "",
+        "cyclicalitytype": "monografico",
+        "background_color": "#FFFFFF"
+      },
+      "access_level": "all"
+    },
+    {
+      "id": 236472,
+      "author": "Daniela Collu",
+      "description": "Il podcast con il pallino della psicologia. Di Daniela Collu",
+      "title": "Sigmund",
+      "image": "https://www.ilpost.it/wp-content/uploads/2024/03/18/1710758755-copertina500x500.jpg",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2024/03/18/1710762615-copertina1352x710-autori.jpg",
+      "object": "podcast",
+      "count": 11,
+      "slug": "sigmund",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 1,
+        "pushnotification": 1,
+        "chronological": 1,
+        "order": 14,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "podcast-monografici",
+        "evidenza": "",
+        "cyclicalitytype": "monografico",
+        "background_color": "#FFFFFF"
+      },
+      "access_level": "all"
+    },
+    {
+      "id": 227496,
+      "author": "Giulia Balducci, Matteo Bordone, Luca Misculin, Stefano Vizio",
+      "description": "Ineludibile. Con Matteo Bordone, Giulia Balducci, Stefano Vizio e Luca Misculin.",
+      "title": "Un podcast sull'Eurovision",
+      "image": "https://www.ilpost.it/wp-content/uploads/2024/04/30/1714468608-copertina500x500.jpg",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2024/04/30/1714468634-copertina676x355.jpg",
+      "object": "podcast",
+      "count": 18,
+      "slug": "podcast-eurovision",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 0,
+        "pushnotification": 1,
+        "chronological": 1,
+        "order": 15,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "annuali",
+        "evidenza": "",
+        "cyclicalitytype": "monografico",
+        "background_color": "#FFFFFF"
+      },
+      "access_level": "subscriber"
+    },
+    {
+      "id": 235598,
+      "author": "Luca Misculin e Riccardo Ginevra",
+      "description": "Da dove veniamo noi e le lingue che parliamo. Un podcast di Luca Misculin e Riccardo Ginevra",
+      "title": "L'invasione",
+      "image": "https://www.ilpost.it/wp-content/uploads/2023/12/22/1703238848-copertina500x500.jpg",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2023/12/22/1703243312-copertina1352x710.jpg",
+      "object": "podcast",
+      "count": 7,
+      "slug": "l-invasione",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 0,
+        "pushnotification": 0,
+        "chronological": 1,
+        "order": 16,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "podcast-monografici",
+        "evidenza": "",
+        "cyclicalitytype": "monografico",
+        "background_color": "#FFFFFF"
+      },
+      "access_level": "all"
+    },
+    {
+      "id": 234755,
+      "author": "Il Post",
+      "description": "Un podcast per conoscere il giornale, e la sua redazione",
+      "title": "Per fare il Post",
+      "image": "https://www.ilpost.it/wp-content/uploads/2023/09/19/1695103495-copertina500x500.jpg",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2023/09/19/1695103517-copertina676x355-autori.jpg",
+      "object": "podcast",
+      "count": 17,
+      "slug": "per-fare-il-post",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 0,
+        "pushnotification": 1,
+        "chronological": 1,
+        "order": 17,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "podcast-monografici",
+        "evidenza": "",
+        "cyclicalitytype": "monografico",
+        "background_color": "#FFFFFF"
+      },
+      "access_level": "registered"
+    },
+    {
+      "id": 231758,
+      "author": "Matteo Bordone e Francesco Costa",
+      "description": "Matteo Bordone e Francesco Costa, insieme, dal vivo.",
+      "title": "Tienimi Morning",
+      "image": "https://www.ilpost.it/wp-content/uploads/2022/09/25/1664102867-tm.png",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2023/05/19/1684474638-1664103130-tm_large-copia.jpg",
+      "object": "podcast",
+      "count": 5,
+      "slug": "tienimi_morning",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 0,
+        "pushnotification": 0,
+        "chronological": 1,
+        "order": 18,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "annuali",
+        "evidenza": "periodico",
+        "cyclicalitytype": "periodico",
+        "background_color": "#FFFFFF"
+      },
+      "access_level": "subscriber"
+    },
+    {
+      "id": 235926,
+      "author": "Mariasole Lisciandro",
+      "description": "Un podcast sulle questioni di soldi: quelle con cui prima o poi tutti abbiamo a che fare. Di Mariasole Lisciandro",
+      "title": "In soldoni",
+      "image": "https://www.ilpost.it/wp-content/uploads/2024/01/26/1706282574-copertina500x500.jpg",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2024/02/20/1708425694-1706280564-Articolo1200x600.jpg",
+      "object": "podcast",
+      "count": 8,
+      "slug": "in-soldoni",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 0,
+        "pushnotification": 1,
+        "chronological": 1,
+        "order": 19,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "podcast-monografici",
+        "evidenza": "monografico",
+        "cyclicalitytype": "monografico",
+        "background_color": "#FFFFFF"
+      },
+      "access_level": "all"
+    },
+    {
+      "id": 227196,
+      "author": "Giulia Balducci, Matteo Bordone, Luca Misculin, Stefano Vizio",
+      "description": "Indomabile. Con Matteo Bordone, Giulia Balducci, Luca Misculin e Stefano Vizio",
+      "title": "Un podcast su Sanremo",
+      "image": "https://www.ilpost.it/wp-content/uploads/2024/02/01/1706806154-copertina500x500.jpg",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2024/02/01/1706806182-copertina676x355.jpg",
+      "object": "podcast",
+      "count": 29,
+      "slug": "il-podcast-del-post-su-sanremo",
+      "url": null,
+      "meta": {
+        "gift": 1,
+        "gift_all": 0,
+        "pushnotification": 1,
+        "chronological": 1,
+        "order": 20,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "annuali",
+        "evidenza": "",
+        "cyclicalitytype": "monografico",
+        "background_color": "#FFFFFF"
+      },
+      "access_level": "subscriber"
+    },
+    {
+      "id": 235470,
+      "author": "Alessandro Baricco e Matteo Caccia",
+      "description": "Due ore di intervista, su tutto, senza rete. Con Alessandro Baricco.",
+      "title": "Wild Baricco",
+      "image": "https://www.ilpost.it/wp-content/uploads/2023/12/08/1702019451-copertina-1000x1000-1.jpg",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2023/12/08/1702019932-copertina676x355.jpg",
+      "object": "podcast",
+      "count": 1,
+      "slug": "wild-baricco-podcast",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 0,
+        "pushnotification": 0,
+        "chronological": 1,
+        "order": 21,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "podcast-monografici",
+        "evidenza": "",
+        "cyclicalitytype": "monografico",
+        "background_color": "#FFFFFF"
+      },
+      "access_level": "all"
+    },
+    {
+      "id": 234841,
+      "author": "Luca Misculin",
+      "description": "Dieci grosse questioni legate alla migrazione ed emerse negli ultimi tempi nel dibattito pubblico italiano.\n",
+      "title": "10 risposte sui migranti",
+      "image": "https://www.ilpost.it/wp-content/uploads/2023/09/27/1695836257-copertina500x500.jpg",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2023/09/27/1695836357-copertina676x355-autori.jpg",
+      "object": "podcast",
+      "count": 11,
+      "slug": "risposte-migranti",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 0,
+        "pushnotification": 0,
+        "chronological": 1,
+        "order": 22,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "podcast-monografici",
+        "evidenza": "",
+        "cyclicalitytype": "monografico",
+        "background_color": "#FFFFFF"
+      },
+      "access_level": "all"
+    },
+    {
+      "id": 234250,
+      "author": "Claudio Caprara",
+      "description": "Il mondo, la politica, gli anni '50: raccontati da dove \u00e8 passato tutto",
+      "title": "L'ombelico di un mondo",
+      "image": "https://www.ilpost.it/wp-content/uploads/2023/07/20/1689867941-copertina500x500.jpg",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2023/07/20/1689868086-copertina676x355.jpg",
+      "object": "podcast",
+      "count": 8,
+      "slug": "l-ombelico-di-un-mondo",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 1,
+        "pushnotification": 1,
+        "chronological": 1,
+        "order": 23,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "podcast-monografici",
+        "evidenza": "",
+        "cyclicalitytype": "monografico",
+        "background_color": "#FFFFFF"
+      },
+      "access_level": "all"
+    },
+    {
+      "id": 227194,
+      "author": "Matteo Bordone, Alessandro Zampini, Francesco Fossetti",
+      "description": "Il podcast sui videogiochi di Matteo Bordone, Alessandro Zampini e Francesco Fossetti, una volta al mese.",
+      "title": "Joypad",
+      "image": "https://www.ilpost.it/wp-content/uploads/2021/04/joypad-app.jpg",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2023/05/19/1684474875-joypad-evi-copia.jpg-copia.jpg",
+      "object": "podcast",
+      "count": 87,
+      "slug": "joypad",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 0,
+        "pushnotification": 1,
+        "chronological": 1,
+        "order": 24,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "mensili",
+        "evidenza": "",
+        "cyclicalitytype": "periodico",
+        "background_color": "#FFFFFF"
+      },
+      "access_level": "all"
+    },
+    {
+      "id": 232871,
+      "author": "Chiara Alessi",
+      "description": "Un podcast quotidiano sulle cose che c'entrano con altre cose, con Chiara Alessi.",
+      "title": "Cosa c'entra?",
+      "image": "https://www.ilpost.it/wp-content/uploads/2023/02/10/1676017472-copertina500x500.jpg",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2023/02/10/1676047849-copertina1000x525-autori.jpg",
+      "object": "podcast",
+      "count": 208,
+      "slug": "cosa-c-entra",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 0,
+        "pushnotification": 0,
+        "chronological": 1,
+        "order": 25,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "podcast-monografici",
+        "evidenza": "",
+        "cyclicalitytype": "monografico",
+        "background_color": "#FFFFFF"
+      },
+      "access_level": "all"
+    },
+    {
+      "id": 234368,
+      "author": "Francesco Costa, Eugenio Cau, Matteo Bordone, Mariasole Lisciandro",
+      "description": "Il corso di recupero per chi quest\u2019anno guardava fuori dalla finestra. Di Francesco Costa, Eugenio Cau, Matteo Bordone, Mariasole Lisciandro\n",
+      "title": "Ripassini",
+      "image": "https://www.ilpost.it/wp-content/uploads/2023/08/04/1691128910-copertina500x500.jpg",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2023/08/04/1691128935-copertina676x355-autori.jpg",
+      "object": "podcast",
+      "count": 4,
+      "slug": "ripassini",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 0,
+        "pushnotification": 0,
+        "chronological": 1,
+        "order": 26,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "podcast-monografici",
+        "evidenza": "monografico",
+        "cyclicalitytype": "monografico",
+        "background_color": "#FFFFFF"
+      },
+      "access_level": "subscriber"
+    },
+    {
+      "id": 234296,
+      "author": "Luigi Mastrodonato",
+      "description": "La peggiore strage nelle carceri italiane del dopoguerra. Un podcast del Post, scritto e raccontato da Luigi Mastrodonato",
+      "title": "Tredici",
+      "image": "https://www.ilpost.it/wp-content/uploads/2023/07/25/1690293349-copertina500x500.jpg",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2023/07/25/1690293419-copertina676x355-autori.jpg",
+      "object": "podcast",
+      "count": 6,
+      "slug": "tredici",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 1,
+        "pushnotification": 0,
+        "chronological": 1,
+        "order": 27,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "podcast-monografici",
+        "evidenza": "",
+        "cyclicalitytype": "monografico",
+        "background_color": "#FFFFFF"
+      },
+      "access_level": "all"
+    },
+    {
+      "id": 229701,
+      "author": "Marco Simoni, Chiara Albanese",
+      "description": "La politica italiana spiegata bene, ogni gioved\u00ec. Con Marco Simoni e Chiara Albanese.",
+      "title": "Politics",
+      "image": "https://www.ilpost.it/wp-content/uploads/2022/01/politics-1x1-1.jpg.webp",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2023/05/19/1684474373-1668188252-Politics-Lancio-copia.jpg",
+      "object": "podcast",
+      "count": 141,
+      "slug": "politics",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 0,
+        "pushnotification": 0,
+        "chronological": 1,
+        "order": 28,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "podcast-monografici",
+        "evidenza": "",
+        "cyclicalitytype": "archiviato",
+        "background_color": "#FFFFFF"
+      },
+      "access_level": "subscriber"
+    },
+    {
+      "id": 233678,
+      "author": "Matteo Bordone e Adriano Martinoli",
+      "description": "Pappagalli, nutrie, alberi del paradiso, insetti delle palme: sono alieni, e sono tra noi. Di Matteo Bordone e Adriano Martinoli\n",
+      "title": "Vicini e lontani",
+      "image": "https://www.ilpost.it/wp-content/uploads/2023/05/19/1684509802-copertina-sponsor-1000x1000-1.jpg",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2023/05/19/1684509557-copertina676x355-autori.jpg",
+      "object": "podcast",
+      "count": 6,
+      "slug": "vicini-e-lontani",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 0,
+        "pushnotification": 0,
+        "chronological": 1,
+        "order": 29,
+        "robot": "off",
+        "sponsored": 1,
+        "cyclicality": "sponsorizzato",
+        "evidenza": "",
+        "cyclicalitytype": "monografico",
+        "background_color": "#FFFFFF"
+      },
+      "access_level": "all"
+    },
+    {
+      "id": 233516,
+      "author": "Alessandro Parodi",
+      "description": "La vera storia di un falso complotto. Di Alessandro Parodi.",
+      "title": "Il grande vecchio",
+      "image": "https://www.ilpost.it/wp-content/uploads/2023/04/28/1682688892-il-grande-vecchio500x500.jpg",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2023/04/28/1682701551-il-grande-vecchio676x355-autori.jpg",
+      "object": "podcast",
+      "count": 6,
+      "slug": "il-grande-vecchio",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 0,
+        "pushnotification": 0,
+        "chronological": 1,
+        "order": 30,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "podcast-monografici",
+        "evidenza": "",
+        "cyclicalitytype": "monografico",
+        "background_color": "#FFFFFF"
+      },
+      "access_level": "all"
+    },
+    {
+      "id": 233318,
+      "author": "Stefano Nazzi, Anna Sergi",
+      "description": "Un podcast per raccontare le donne dentro e contro la 'ndrangheta, di Stefano Nazzi e Anna Sergi, in collaborazione con Disney+.",
+      "title": "Le onorate",
+      "image": "https://www.ilpost.it/wp-content/uploads/2023/04/04/1680608805-copertina1000x1000-titolo-sottotitolo-autori.jpg",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2023/04/04/1680608912-copertina-676x355-titolo-sottotitolo-autori-collaborazione.jpg",
+      "object": "podcast",
+      "count": 4,
+      "slug": "le-onorate",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 0,
+        "pushnotification": 0,
+        "chronological": 1,
+        "order": 31,
+        "robot": "off",
+        "sponsored": 1,
+        "cyclicality": "podcast-monografici",
+        "evidenza": "monografico",
+        "cyclicalitytype": "monografico",
+        "background_color": "#FFFFFF"
+      },
+      "access_level": "all"
+    },
+    {
+      "id": 228236,
+      "author": "Andrea Genzone e Gabriele Bertacchini",
+      "description": "Gli orsi bruni sulle Alpi erano quasi estinti. Erano. Ora \u00e8 in corso una convivenza non semplice. Un podcast di Andrea Genzone e Gabriele Bertacchini.\n",
+      "title": "M49 - Una storia di orsi e persone",
+      "image": "https://www.ilpost.it/wp-content/uploads/2022/12/3fa331fe1edddfe23a2fa6d2b022000d.jpg",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2022/05/06/m49.jpg",
+      "object": "podcast",
+      "count": 5,
+      "slug": "m49-una-storia-di-orsi-e-persone",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 1,
+        "pushnotification": 0,
+        "chronological": 1,
+        "order": 32,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "podcast-monografici",
+        "evidenza": "",
+        "cyclicalitytype": "monografico",
+        "background_color": "#FFFFFF"
+      },
+      "access_level": "all"
+    },
+    {
+      "id": 233144,
+      "author": "Luca Misculin",
+      "description": "Un podcast lungo 12 giorni dalla Geo Barents, la nave nel Mediterraneo di Medici senza frontiere.",
+      "title": "La nave",
+      "image": "https://www.ilpost.it/wp-content/uploads/2023/03/15/1678866223-copertina500x500.jpg",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2023/03/15/1678866314-copertina676x355-autori.jpg",
+      "object": "podcast",
+      "count": 14,
+      "slug": "la-nave",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 0,
+        "pushnotification": 0,
+        "chronological": 0,
+        "order": 33,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "podcast-monografici",
+        "evidenza": "",
+        "cyclicalitytype": "monografico",
+        "background_color": "#FFFFFF"
+      },
+      "access_level": "all"
+    },
+    {
+      "id": 228710,
+      "author": "Luca Misculin",
+      "description": "Quattrocento anni di cui non sappiamo quasi nulla. Un podcast di Luca Misculin.\n",
+      "title": "La fine del mondo",
+      "image": "https://www.ilpost.it/wp-content/uploads/2021/09/app-fine-del-mondo.png.webp",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2021/09/evi-fine-del-mondo-1.jpg.webp",
+      "object": "podcast",
+      "count": 5,
+      "slug": "lafinedelmondo",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 0,
+        "pushnotification": 0,
+        "chronological": 1,
+        "order": 34,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "podcast-monografici",
+        "evidenza": "",
+        "cyclicalitytype": "monografico",
+        "background_color": "#FFFFFF"
+      },
+      "access_level": "all"
+    },
+    {
+      "id": 232619,
+      "author": "Nadia Ferrigo e Luca Marola",
+      "description": "Cosa \u00e8 successo negli stati degli Stati Uniti in cui la cannabis \u00e8 legale da anni. Di Nadia Ferrigo e Luca Marola.",
+      "title": "L'erba del vicino",
+      "image": "https://www.ilpost.it/wp-content/uploads/2023/01/09/1673250820-copertina500x500-copia.jpg",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2023/01/09/1673250977-copertina675x355autori.jpg",
+      "object": "podcast",
+      "count": 6,
+      "slug": "l-erba-de-vicino",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 0,
+        "pushnotification": 0,
+        "chronological": 1,
+        "order": 35,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "podcast-monografici",
+        "evidenza": "",
+        "cyclicalitytype": "monografico",
+        "background_color": "#FFFFFF"
+      },
+      "access_level": "all"
+    },
+    {
+      "id": 231622,
+      "author": "Isabel Gangitano",
+      "description": "Cinque puntate sulle emozioni primarie, per capire come funzioniamo: partendo dalle basi. Di Isabel Gangitano.",
+      "title": "Le basi",
+      "image": "https://www.ilpost.it/wp-content/uploads/2022/09/08/1662620111-1400x1400-1.png",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2023/05/19/1684474763-1662620110-1140x720-1-copia.jpg",
+      "object": "podcast",
+      "count": 6,
+      "slug": "le-basi",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 0,
+        "pushnotification": 0,
+        "chronological": 1,
+        "order": 36,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "podcast-monografici",
+        "evidenza": "",
+        "cyclicalitytype": "monografico",
+        "background_color": "#FFFFFF"
+      },
+      "access_level": "all"
+    },
+    {
+      "id": 231088,
+      "author": "Iacopo Scaramuzzi, Alvise Armellini",
+      "description": "Lo scandalo della pedofilia nel clero ha travolto la Chiesa cattolica in tutto il mondo. Non in Italia. Perch\u00e9? Un podcast di Alvise Armellini e Iacopo Scaramuzzi.",
+      "title": "La bomba",
+      "image": "https://www.ilpost.it/wp-content/uploads/2022/06/23/1655975823-LB-Cover.png",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2023/05/23/1684821603-1655975825-LB-Banner-copia.jpg",
+      "object": "podcast",
+      "count": 7,
+      "slug": "la-bomba",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 0,
+        "pushnotification": 0,
+        "chronological": 1,
+        "order": 37,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "podcast-monografici",
+        "evidenza": "",
+        "cyclicalitytype": "monografico",
+        "background_color": "#FFFFFF"
+      },
+      "access_level": "all"
+    },
+    {
+      "id": 231013,
+      "author": "Luca Sofri",
+      "description": "Le storie per cui \u00e8 ancora straordinaria la storia del Watergate. Un podcast di Luca Sofri.",
+      "title": "Un furto di quart'ordine",
+      "image": "https://www.ilpost.it/wp-content/uploads/2022/06/15/1655292003-UFDQO-Cover.png",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2022/06/15/1655292011-UFDQO-Banner.png",
+      "object": "podcast",
+      "count": 5,
+      "slug": "furto-watergate",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 0,
+        "pushnotification": 0,
+        "chronological": 1,
+        "order": 38,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "podcast-monografici",
+        "evidenza": "",
+        "cyclicalitytype": "monografico",
+        "background_color": "#FFFFFF"
+      },
+      "access_level": "all"
+    },
+    {
+      "id": 232518,
+      "author": "Luca Sofri",
+      "description": "Un\u2019antologia di conversazioni a Peccioli, con Daria Bignardi, Michela Murgia, Paolo Bonolis, Pif, Oscar Farinetti, Francesco Costa e molti altri",
+      "title": "Racconti a Natale",
+      "image": "https://www.ilpost.it/wp-content/uploads/2022/12/23/1671792401-500-x-500.jpg",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2022/12/23/1671792458-676-x-355.jpg",
+      "object": "podcast",
+      "count": 3,
+      "slug": "racconti-a-natale",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 0,
+        "pushnotification": 0,
+        "chronological": 0,
+        "order": 39,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "podcast-monografici",
+        "evidenza": "",
+        "cyclicalitytype": "monografico",
+        "background_color": "#FFFFFF"
+      },
+      "access_level": "all"
+    },
+    {
+      "id": 230754,
+      "author": "Lorenzo Faggi",
+      "description": "Se il banco vince sempre, com'\u00e8 possibile che fallisca un casin\u00f2? Un podcast di Lorenzo Faggi.",
+      "title": "La fabbrica dei soldi",
+      "image": "https://www.ilpost.it/wp-content/uploads/2022/05/20/1653034284-LFDS-cover.png",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2022/05/20/1653034286-LFDS-banner.png",
+      "object": "podcast",
+      "count": 5,
+      "slug": "lafabbricadeisoldi",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 0,
+        "pushnotification": 0,
+        "chronological": 1,
+        "order": 40,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "podcast-monografici",
+        "evidenza": "",
+        "cyclicalitytype": "monografico",
+        "background_color": "#FFFFFF"
+      },
+      "access_level": "all"
+    },
+    {
+      "id": 230476,
+      "author": "Chiara Alessi",
+      "description": "Storie di cose ordinarie scovate in momenti straordinari. Un podcast di Chiara Alessi.",
+      "title": "Certe cose",
+      "image": "https://www.ilpost.it/wp-content/uploads/2022/04/22/logocertecose.png",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2022/04/22/cc-larga.png",
+      "object": "podcast",
+      "count": 5,
+      "slug": "certe-cose",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 0,
+        "pushnotification": 0,
+        "chronological": 1,
+        "order": 41,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "podcast-monografici",
+        "evidenza": "",
+        "cyclicalitytype": "monografico",
+        "background_color": "#FFFFFF"
+      },
+      "access_level": "all"
+    },
+    {
+      "id": 229228,
+      "author": "Il Post",
+      "description": "Presentazioni e chiacchiere sulla rivista del Post dedicata a singoli temi da raccontare e spiegare. La trovi in libreria o sul sito del Post.",
+      "title": "Cose spiegate bene",
+      "image": "https://www.ilpost.it/wp-content/uploads/2022/05/03/cose-droghe.jpeg",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2022/05/03/cose-cover.png",
+      "object": "podcast",
+      "count": 3,
+      "slug": "questioni-di-un-certo-genere",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 0,
+        "pushnotification": 0,
+        "chronological": 1,
+        "order": 42,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "podcast-monografici",
+        "evidenza": "",
+        "cyclicalitytype": "archiviato",
+        "background_color": "#FFFFFF"
+      },
+      "access_level": "all"
+    },
+    {
+      "id": 227768,
+      "author": "Stefania Carini",
+      "description": "Come un fatto di cronaca ha cambiato i media e l\u2019Italia attorno ai media. Di Stefania Carini.",
+      "title": "Da Vermicino in poi",
+      "image": "https://www.ilpost.it/wp-content/uploads/2021/06/vermicino-post-app.png",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2021/10/vermicino-evi.png.webp",
+      "object": "podcast",
+      "count": 3,
+      "slug": "da-vermicino-in-poi",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 0,
+        "pushnotification": 0,
+        "chronological": 1,
+        "order": 43,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "podcast-monografici",
+        "evidenza": "",
+        "cyclicalitytype": "archiviato",
+        "background_color": "#FFFFFF"
+      },
+      "access_level": "all"
+    },
+    {
+      "id": 227322,
+      "author": "Alessandro Baricco",
+      "description": "Il tempo che viviamo e il fallimento dell'intelligenza novecentesca. Testo di Alessandro Baricco, voce di Luca Bizzarri.",
+      "title": "Mai pi\u00f9",
+      "image": "https://www.ilpost.it/wp-content/uploads/2021/04/mai-piu-permanent-baricco.png",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2022/09/14/1663140508-maipiu.png",
+      "object": "podcast",
+      "count": 1,
+      "slug": "mai-piu",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 0,
+        "pushnotification": 0,
+        "chronological": 1,
+        "order": 44,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "podcast-monografici",
+        "evidenza": "",
+        "cyclicalitytype": "monografico",
+        "background_color": "#FFFFFF"
+      },
+      "access_level": "all"
+    },
+    {
+      "id": 227244,
+      "author": "Arianna Cavallo",
+      "description": "Le storie intrecciate e battagliere di Algida, Motta, Eldorado e Sammontana. Di Arianna Cavallo.",
+      "title": "La guerra dei gelati",
+      "image": "https://www.ilpost.it/wp-content/uploads/2021/04/app-gelati1.png",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2019/09/gelati1.png",
+      "object": "podcast",
+      "count": 1,
+      "slug": "la-guerra-dei-gelati",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 0,
+        "pushnotification": 0,
+        "chronological": 1,
+        "order": 45,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "podcast-monografici",
+        "evidenza": "",
+        "cyclicalitytype": "archiviato",
+        "background_color": "#FFFFFF"
+      },
+      "access_level": "all"
+    },
+    {
+      "id": 227259,
+      "author": "Stefano Vizio",
+      "description": "Un podcast sul 1959, i dischi di Davis, Coltrane, Brubeck, Mingus e Coleman e le tante cose che cambiarono in quei mesi.",
+      "title": "Il pi\u00f9 grande anno della storia del jazz",
+      "image": "https://www.ilpost.it/wp-content/uploads/2021/04/app-jazz1.jpg",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2022/09/14/1663141121-jazz.png",
+      "object": "podcast",
+      "count": 1,
+      "slug": "1959-anno-del-jazz",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 0,
+        "pushnotification": 0,
+        "chronological": 1,
+        "order": 46,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "podcast-monografici",
+        "evidenza": "",
+        "cyclicalitytype": "monografico",
+        "background_color": "#FFFFFF"
+      },
+      "access_level": "all"
+    },
+    {
+      "id": 228752,
+      "author": "Claudio Caprara, Valentina Lovato",
+      "description": "Un viaggio dove nascono i cambiamenti in Italia.",
+      "title": "Strade blu",
+      "image": "https://www.ilpost.it/wp-content/uploads/2021/10/SP-Podcast-Blu.png.webp",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2021/09/sb_web.png.webp",
+      "object": "podcast",
+      "count": 34,
+      "slug": "strade-blu",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 0,
+        "pushnotification": 0,
+        "chronological": 1,
+        "order": 47,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "podcast-monografici",
+        "evidenza": "",
+        "cyclicalitytype": "archiviato",
+        "background_color": "#FFFFFF"
+      },
+      "access_level": "all"
+    },
+    {
+      "id": 227246,
+      "author": "Davide De Luca",
+      "description": "La lotta al cambiamento climatico ha bisogno di modi efficaci per descrivere la fine che rischiamo. Di Davide Maria De Luca.\n",
+      "title": "Immaginare l'apocalisse",
+      "image": "https://www.ilpost.it/wp-content/uploads/2021/04/app-apocaliss.png",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2022/09/14/1663141324-apocalisse.png",
+      "object": "podcast",
+      "count": 2,
+      "slug": "immaginare-lapocalisse",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 0,
+        "pushnotification": 0,
+        "chronological": 1,
+        "order": 48,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "podcast-monografici",
+        "evidenza": "",
+        "cyclicalitytype": "archiviato",
+        "background_color": "#FFFFFF"
+      },
+      "access_level": "all"
+    },
+    {
+      "id": 227195,
+      "author": "Luca Misculin",
+      "description": "L&#8217;Europa, spiegata bene.\n",
+      "title": "Konrad",
+      "image": "https://www.ilpost.it/wp-content/uploads/2021/04/app-konrad.jpg",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2022/09/14/1663141371-konrad.png",
+      "object": "podcast",
+      "count": 14,
+      "slug": "konrad",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 0,
+        "pushnotification": 0,
+        "chronological": 1,
+        "order": 49,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "podcast-monografici",
+        "evidenza": "monografico",
+        "cyclicalitytype": "archiviato",
+        "background_color": "#FFFFFF"
+      },
+      "access_level": "all"
+    },
+    {
+      "id": 227197,
+      "author": "Arianna Cavallo",
+      "description": "Una raccolta di interviste fatte a libraie e librai di diverse citt\u00e0 italiane, parte del progetto \"Lettori e Librai\" della Fondazione Peccioliper.",
+      "title": "Storie dalla libreria",
+      "image": "https://www.ilpost.it/wp-content/uploads/2021/04/app-storie_libreria.jpg",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2022/09/14/1663141283-libreria.png",
+      "object": "podcast",
+      "count": 5,
+      "slug": "storie-dalla-libreria",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 0,
+        "pushnotification": 0,
+        "chronological": 1,
+        "order": 50,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "podcast-monografici",
+        "evidenza": "",
+        "cyclicalitytype": "monografico",
+        "background_color": "#FFFFFF"
+      },
+      "access_level": "all"
+    },
+    {
+      "id": 227198,
+      "author": "Stefano Vizio",
+      "description": "Un podcast settimanale per capire le cose del mondo.\n",
+      "title": "Weekly Post",
+      "image": "https://www.ilpost.it/wp-content/uploads/2021/04/app-weekly.jpg",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2022/09/14/1663141434-weekly.png",
+      "object": "podcast",
+      "count": 23,
+      "slug": "weekly-post",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 0,
+        "pushnotification": 0,
+        "chronological": 1,
+        "order": 51,
+        "robot": "off",
+        "sponsored": 0,
+        "cyclicality": "podcast-monografici",
+        "evidenza": "",
+        "cyclicalitytype": "archiviato",
+        "background_color": "#FFFFFF"
+      },
+      "access_level": "all"
+    },
+    {
+      "id": 227412,
+      "author": "IL POST",
+      "description": "Gli articoli del Post, letti da una robot.",
+      "title": "Audiopost",
+      "image": "https://www.ilpost.it/wp-content/uploads/2021/05/Robot.png",
+      "image_web": "https://www.ilpost.it/wp-content/uploads/2023/05/23/1684822009-1663141729-Robot-copia.jpg",
+      "object": "podcast",
+      "count": 9535,
+      "slug": "audio-articoli",
+      "url": null,
+      "meta": {
+        "gift": 0,
+        "gift_all": 0,
+        "pushnotification": 0,
+        "chronological": 1,
+        "order": 53,
+        "robot": "on",
+        "sponsored": 0,
+        "cyclicality": "podcast-monografici",
+        "evidenza": "",
+        "cyclicalitytype": "monografico",
+        "background_color": "#FFFFFF"
+      },
+      "access_level": "all"
     }
   ]
 }
