@@ -1,0 +1,19 @@
+[build]
+publish = "dist"
+command = "npm run build"
+
+[functions]
+directory = "netlify/functions"
+
+[[headers]]
+for = "/.netlify/functions/*"
+[headers.values]
+Access-Control-Allow-Origin = "*"
+Access-Control-Allow-Headers = "Content-Type"
+Access-Control-Allow-Methods = "GET, OPTIONS"
+
+# Redirect all requests to index.html for client-side routing
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200

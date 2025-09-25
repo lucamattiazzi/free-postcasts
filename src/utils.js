@@ -1,15 +1,11 @@
-function ignoreCorsFetch(url) {
-  return fetch(`https://api.cors.lol/?url=${encodeURIComponent(url)}`)
-}
-
 export async function getPodcast(id) {
-  const resp = await ignoreCorsFetch(`https://api-prod.ilpost.it/podcast/v1/podcast/${id}`)
+  const resp = await fetch(`/podcasts/${id}`)
   return await resp.json()
 }
 
 export async function getAllPodcasts() {
   try {
-    const resp = await ignoreCorsFetch("https://api-prod.ilpost.it/podcast/v1/podcast/?pg=1&hits=100")
+    const resp = await fetch("/podcasts")
     return await resp.json()
   } catch (err) {
     console.log('err', err)
